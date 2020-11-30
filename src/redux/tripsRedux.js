@@ -17,18 +17,11 @@ export const getFilteredTrips = ({trips, filters}) => {
   }
   // TODO - filter by tags
   if(filters.tags.length > 0){
-    const checkTags = (array1, array2) => {
-      for (let i in array1){
-        for (let j in array2){
-          if (array1[i] == array2[j]){
-            return true;
-          }
-        }
-      }
-    };
-    output = output.filter(trip => checkTags(filters.tags, trip.tags));
+    output = output.filter(trip => trip.tags.some(tag => filters.tags.includes(tag)));
   }
+  
   // TODO - sort by cost descending (most expensive goes first)
+  output = output.sort((a,b) => (parseInt(a.cost.slice(1)) < parseInt(b.cost.slice(1))) ? 1 : -1);
 
   return output;
 };
