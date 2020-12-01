@@ -21,7 +21,7 @@ export const getFilteredTrips = ({trips, filters}) => {
   }
   
   // TODO - sort by cost descending (most expensive goes first)
-  output = output.sort((a,b) => (parseInt(a.cost.slice(1)) < parseInt(b.cost.slice(1))) ? 1 : -1);
+  output = output.sort((trip1,trip2) => (parseInt(trip1.cost.slice(1).replace(',','')) < parseInt(trip2.cost.slice(1).replace(',',''))) ? 1 : -1);
 
   return output;
 };
