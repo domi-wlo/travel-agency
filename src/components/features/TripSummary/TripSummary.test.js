@@ -4,33 +4,37 @@ import TripSummary from './TripSummary';
 
 describe('Component TripSummary', () => {
   it('should render correct address', () => {
-    const tags = [];
     const expectedLink = '/trip/abc';
-    const component = shallow(<TripSummary id='abc' tags={tags} />);
+    const component = shallow(<TripSummary id='abc' />);
     expect(component.find('.link').prop('to')).toEqual(expectedLink);
   });
   it('should render correct image and alt', () => {
-    const tags = [];
     const expectedSrc = 'imagesource.jpg';
     const expectedAlt = 'altDescription';
 
-    const component = shallow(<TripSummary image={expectedSrc} name={expectedAlt} tags={tags} />);
+    const component = shallow(<TripSummary image={expectedSrc} name={expectedAlt}/>);
 
     expect(component.find('img').prop('src')).toEqual(expectedSrc);
     expect(component.find('img').prop('alt')).toEqual(expectedAlt);
   });
   it('should render correct props', () => {
-    const tags = [];
     const expectedName = 'example';
-    const component = shallow(<TripSummary name={expectedName} tags={tags} />);
+    const expectedCost = '100';
+    const expectedDays = 2;
+    const component = shallow(<TripSummary name={expectedName} days={expectedDays} cost={expectedCost} />);
 
+    //name
     const renderedName = component.find('.title').text();
-
     expect(renderedName).toEqual(expectedName);
+
+    //cost
+    expect(component.find('.details span').at(1).text()).toBe('from ' + expectedCost);
+
+    //days
+    expect(component.find('.details span').at(0).text()).toBe(expectedDays + ' days');
   });
   it('should render without crashing', () => {
-    const tags = [];
-    const component = shallow(<TripSummary tags = {tags} />);
+    const component = shallow(<TripSummary/>);
     expect(component).toBeTruthy();
   });
   it('should render render tag spans in order', () => {
@@ -41,8 +45,7 @@ describe('Component TripSummary', () => {
     expect(component.find('.tags span').at(2).text()).toBe('3');
   });
   it('should render properly without tags defined', () => {
-    const tags = [];
-    const component = shallow(<TripSummary tags = {tags} />);
+    const component = shallow(<TripSummary />);
     expect(component).toBeTruthy();
   });
 });
