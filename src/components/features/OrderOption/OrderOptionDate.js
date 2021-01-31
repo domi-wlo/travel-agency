@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import DatePicker from 'react-datepicker';
-import styles from './OrderOption';
+import styles from './OrderOption.scss';
  
 import 'react-datepicker/dist/react-datepicker-cssmodules.css';
  

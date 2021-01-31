@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './OrderOption';
+import styles from './OrderOption.scss';
 
 
 const OrderOptionText = () => (
